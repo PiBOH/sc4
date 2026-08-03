@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.2] - 2026-08-03
 
-### Added
+### Added (`Italian/SimCityLocale.dat`)
 
 - Italian translation for 1,659 previously missing localization strings,
   covering interface labels, advisor messages, tutorial dialogs, mission text,
@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Localized version of the sample/error string present only in the English
   locale file.
 
-### Fixed
+### Fixed (`Italian/SimCityLocale.dat`)
 
 - Corrected HTML tag loss in a long advisor dialog so all in-game links and
   placeholders render correctly.
@@ -25,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `#mission_target#`, `#tuning_constants.*#`) and escape sequences in all
   translated strings.
 
-### Changed
+### Changed (`Italian/SimCityLocale.dat`)
 
 - Rebuilt `SimCityLocale.dat` as a valid DBPF archive with updated resource
   index and offsets.
