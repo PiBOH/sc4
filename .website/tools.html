@@ -4,16 +4,30 @@
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
 <header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html">SimCity 4 Locales</a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button><nav id="site-nav" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="languages.html">Languages</a><a href="install.html">Installation</a><a class="active" href="tools.html">Tools</a><a href="releases.html">Releases</a></nav></div></header>
-<main id="main-content">
-<section class="page-hero"><div class="container"><h1>Translation tools</h1><p>A small, dependency-free Python utility for inspecting, comparing, extracting, and safely repacking locale archives.</p></div></section>
-<section class="content-section"><div class="container content-grid"><article class="prose">
-<h2><code>locale_tools.py</code></h2><p>The tool lives in <code>.tools/translation-tools/locale_tools.py</code>. Python 3.10 or newer is recommended.</p>
-<h3>Inspect archives</h3><div class="code-block"><code>python3 .tools/translation-tools/locale_tools.py inspect \
-  English/SimCityLocale.dat Italian/SimCityLocale.dat</code></div>
-<h3>Compare a language with English</h3><div class="code-block"><code>python3 .tools/translation-tools/locale_tools.py compare \
-  English/SimCityLocale.dat Italian/SimCityLocale.dat</code></div>
-<h3>Extract readable text</h3><div class="code-block"><code>python3 .tools/translation-tools/locale_tools.py extract \
-  Italian/SimCityLocale.dat /tmp/italian.json</code></div>
-<h2>Safety checks</h2><ul><li>Resources are identified by Type/Group/Instance (TGI) identifiers.</li><li>Only exact, verified text matches are considered for conservative updates.</li><li>HTML, escape sequences, placeholders, names, URLs, and technical tokens are preserved.</li><li>LTEXT length fields, payload sizes, and DBPF offsets are rebuilt together.</li><li>Trailing data, gaps, and overlapping payloads are rejected before repacking.</li><li>The output is reopened and every LTEXT resource is decoded during validation.</li></ul></article><aside class="side-card"><h3>Useful files</h3><a href="https://github.com/PiBOH/sc4/blob/main/.tools/translation-tools/locale_tools.py">Open the tool</a><a href="https://github.com/PiBOH/sc4/blob/main/README.md">Project README</a><a href="releases.html">View releases</a></aside></div></section></main>
+<main id="main-content"><div class="container">
+<h1>Translation tools</h1>
+<p>A small, dependency-free Python utility for inspecting, comparing, extracting, and safely repacking locale archives.</p>
+<h2><code>locale_tools.py</code></h2>
+<p>The tool lives in <code>.tools/translation-tools/locale_tools.py</code>. Python 3.10 or newer is recommended.</p>
+<h3>Inspect archives</h3>
+<pre><code>python3 .tools/translation-tools/locale_tools.py inspect \
+  English/SimCityLocale.dat Italian/SimCityLocale.dat</code></pre>
+<h3>Compare a language with English</h3>
+<pre><code>python3 .tools/translation-tools/locale_tools.py compare \
+  English/SimCityLocale.dat Italian/SimCityLocale.dat</code></pre>
+<h3>Extract readable text</h3>
+<pre><code>python3 .tools/translation-tools/locale_tools.py extract \
+  Italian/SimCityLocale.dat /tmp/italian.json</code></pre>
+<h2>Safety checks</h2>
+<ul>
+<li>Resources are identified by Type/Group/Instance (TGI) identifiers.</li>
+<li>Only exact, verified text matches are considered for conservative updates.</li>
+<li>HTML, escape sequences, placeholders, names, URLs, and technical tokens are preserved.</li>
+<li>LTEXT length fields, payload sizes, and DBPF offsets are rebuilt together.</li>
+<li>Trailing data, gaps, and overlapping payloads are rejected before repacking.</li>
+<li>The output is reopened and every LTEXT resource is decoded during validation.</li>
+</ul>
+<p><a href="https://github.com/PiBOH/sc4/blob/main/.tools/translation-tools/locale_tools.py">Open the tool</a> &middot; <a href="releases.html">View releases</a></p>
+</div></main>
 <footer class="site-footer"><div class="container footer-grid"><div><p>SimCity 4 Locales — community-maintained language archives.</p></div><div class="footer-links"><a href="https://github.com/PiBOH/sc4">GitHub</a><a href="https://github.com/PiBOH/sc4/blob/main/README.md">README</a><a href="license.html">License</a></div></div><div class="container footer-bottom"><span>SimCity 4 Deluxe v1.1.610</span></div></footer>
 </body></html>

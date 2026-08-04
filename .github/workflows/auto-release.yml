@@ -119,14 +119,41 @@ jobs:
         run: |
           set -euo pipefail
           VERSION='${{ steps.version.outputs.version }}'
+
+          # Try to extract the version section from CHANGELOG
           awk -v version="$VERSION" '
             BEGIN { found=0 }
             $0 == "## [" version "]" { found=1; print; next }
             found && $0 ~ /^## \[/ { exit }
             found { print }
-          ' CHANGELOG.md > release-notes.md || true
+          ' CHANGELOG.md > release-notes.md
+
+          # Fall back to Unreleased section
           if [[ ! -s release-notes.md ]]; then
-            printf 'Automated release %s. See CHANGELOG.md for details.\n' "$VERSION" > release-notes.md
+            awk '
+              BEGIN { found=0 }
+              $0 == "## [Unreleased]" { found=1; print; next }
+              found && $0 ~ /^## \[/ { exit }
+              found { print }
+            ' CHANGELOG.md > release-notes.md
+          fi
+
+          # Append a file-change summary since the previous tag
+          PREV_TAG="$(git tag --sort=-creatordate | head -1 || true)"
+          if [[ -n "$PREV_TAG" ]]; then
+            {
+              echo ''
+              echo '### Changed files'
+              echo ''
+              echo '```'
+              git diff --stat "$PREV_TAG"..HEAD -- . ':!.git' ':!.bkp' ':!.ignore' ':!*.BAK'
+              echo '```'
+            } >> release-notes.md
+          fi
+
+          # Final fallback
+          if [[ ! -s release-notes.md ]]; then
+            printf 'Release %s. See CHANGELOG.md for details.\n' "$VERSION" > release-notes.md
           fi
 
       - name: Publish GitHub Release
