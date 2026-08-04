@@ -1,6 +1,6 @@
 (() => {
   const toggle = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('.site-nav');
+  const nav = document.querySelector('#top-nav');
   if (!toggle || !nav) return;
   toggle.addEventListener('click', () => {
     const open = nav.classList.toggle('open');
