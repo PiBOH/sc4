@@ -2,7 +2,7 @@
 html, body { height: 100%; }
 body {
   margin: 0;
-  color: #000;
+  color: #17365d;
   background: #fff;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 13px;
@@ -20,11 +20,11 @@ a:focus-visible { outline: 2px solid #0000ee; outline-offset: 1px; }
 /* Header — just the site title */
 .site-header {
   padding: 10px 14px 4px;
-  background: #f0f0f0;
-  border-bottom: 1px solid #aaa;
+  background: #e6eef8;
+  border-bottom: 1px solid #7f9db9;
 }
 .brand {
-  color: #000;
+  color: #17365d;
   text-decoration: none;
   font-size: 16px;
   font-weight: 700;
@@ -38,14 +38,14 @@ a:focus-visible { outline: 2px solid #0000ee; outline-offset: 1px; }
   min-width: 176px;
   padding: 10px 8px;
   border-right: 1px solid #ccc;
-  background: #f8f8f8;
+  background: #eef4fb;
   font-size: 12px;
 }
 .sidebar-title {
   font-weight: 700;
   margin: 0 0 4px;
   padding: 0 4px;
-  color: #000;
+  color: #17365d;
   font-size: 13px;
 }
 .sidebar ul {
@@ -60,19 +60,19 @@ a:focus-visible { outline: 2px solid #0000ee; outline-offset: 1px; }
   color: #0000ee;
   text-decoration: underline;
 }
-.sidebar a:hover { background: #eee; }
+.sidebar a:hover { background: #dce6f2; }
 .sidebar a.active {
-  color: #000;
+  color: #17365d;
   font-weight: 700;
   text-decoration: none;
-  background: #eee;
+  background: #dce6f2;
 }
 
 /* Main content */
 .main-content { flex: 1; padding: 14px 18px; min-width: 0; }
 
-h1 { font-size: 17px; color: #000; margin: 0 0 10px; }
-h2 { font-size: 14px; color: #000; margin: 18px 0 6px; }
+h1 { font-size: 17px; color: #17365d; margin: 0 0 10px; }
+h2 { font-size: 14px; color: #24527a; margin: 18px 0 6px; }
 h3 { font-size: 13px; color: #000; margin: 12px 0 4px; }
 p, li { margin: 0 0 7px; }
 code { font-family: "Courier New", Courier, monospace; font-size: 12px; }
@@ -91,12 +91,12 @@ pre {
   padding: 3px 8px;
   border: 1px solid #999;
   background: #eee;
-  color: #000;
+  color: #17365d;
   text-decoration: none;
   font-size: 11px;
   font-family: Arial, Helvetica, sans-serif;
 }
-.button:hover { background: #ddd; }
+.button:hover { background: #dce6f2; }
 
 /* Table */
 .language-table {
@@ -109,8 +109,8 @@ pre {
 .language-table th {
   padding: 3px 5px;
   border: 1px solid #999;
-  background: #dde;
-  color: #000;
+  background: #d9e8f5;
+  color: #17365d;
   text-align: left;
   font-size: 11px;
   font-weight: 700;
@@ -124,9 +124,10 @@ pre {
 /* Footer */
 .site-footer {
   padding: 8px 14px;
-  border-top: 1px solid #aaa;
+  border-top: 1px solid #7f9db9;
   font-size: 11px;
-  color: #555;
+  color: #365f7d;
+  background: #f3f7fb;
   margin-top: auto;
 }
 
@@ -137,9 +138,9 @@ pre {
     width: 100%;
     min-width: 0;
     border-right: 0;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #b4c7d9;
     padding: 8px 12px;
-    background: #fff;
+    background: #eef4fb;
   }
   .sidebar ul { display: flex; flex-wrap: wrap; gap: 0 12px; margin: 0; }
   .sidebar ul li { margin: 0; }

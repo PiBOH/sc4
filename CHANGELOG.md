@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added direct download links for every language ZIP on the website languages page, including English and UK English reference archives.
 - Improved automated release notes to include a file-change summary from the previous tag when a version section is not yet present in the changelog.
 - Redesigned the website to match the NirSoft aesthetic: Arial font, white background, minimal header with pipe-separated text links, no decorative boxes, standard browser link colors, plain tables.
+- Added restrained old-web colors to the existing site structure: pale blue sidebar/header/footer backgrounds, dark blue headings, and a light blue table header without changing the layout.
 - Documented archive compatibility up to SimCity 4 v1.1.641 across README, developer guide, website, and Jekyll config.
 
 ### Changed
