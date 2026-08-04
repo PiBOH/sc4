@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added per-language locale ZIPs as release assets (`Danish.zip`, `Italian.zip`, …), each with a SHA-256 checksum, so users can download a single language without cloning the repository.
 - Added direct download links for every language ZIP on the website languages page, including English and UK English reference archives.
 - Improved automated release notes to include a file-change summary from the previous tag when a version section is not yet present in the changelog.
-- Stripped the website to a plain, no-framework design — no cards, grids, stats boxes, or decorative styling.
+- Redesigned the website with an early-2000s aesthetic: serif fonts, navy/beveled header, ridge-bordered content boxes, Windows-style outset buttons, and `#e8e8e8` background — matching the SimCity 4 (2003) era.
 - Documented archive compatibility up to SimCity 4 v1.1.641 across README, developer guide, website, and Jekyll config.
 
 ### Changed
