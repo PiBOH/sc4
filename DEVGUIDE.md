@@ -4,7 +4,7 @@ This file is the repository's contributor guide. Read it before changing locale 
 
 ## Project scope
 
-This repository maintains community localization archives for SimCity 4 Deluxe v1.1.610. It is not the game itself.
+This repository maintains community localization archives for SimCity 4 Deluxe v1.1.610, compatible up to SimCity 4 v1.1.641. It is not the game itself.
 
 The repository's own files are released under the Unlicense in [`LICENSE`](LICENSE). SimCity 4, Maxis, Electronic Arts, the original game data, and related assets remain governed by their own ownership and license terms. Reference EULAs and original support notices are kept under [`Support/`](Support/); never describe the repository Unlicense as a license for the game. A local `Maxis/Support/` mirror is not automatically committed.
 

@@ -1,6 +1,6 @@
 # SimCity 4 multilingual locale archives
 
-Updated `SimCityLocale.dat` archives for **SimCity 4 Deluxe v1.1.610**, with community-maintained translations for the supported game languages.
+Updated `SimCityLocale.dat` archives for **SimCity 4 Deluxe v1.1.610**, compatible up to SimCity 4 v1.1.641, with community-maintained translations for the supported game languages.
 
 > This repository contains localization data and maintenance tooling. It does not contain the SimCity 4 game executable or a license to redistribute the game.
 

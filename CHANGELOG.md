@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added direct download links for every language ZIP on the website languages page, including English and UK English reference archives.
 - Improved automated release notes to include a file-change summary from the previous tag when a version section is not yet present in the changelog.
 - Stripped the website to a plain, no-framework design — no cards, grids, stats boxes, or decorative styling.
+- Documented archive compatibility up to SimCity 4 v1.1.641 across README, developer guide, website, and Jekyll config.
 
 ### Changed
 
