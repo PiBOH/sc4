@@ -89,7 +89,7 @@ Do not delete these backups unless you have independently verified the correspon
 
 The release version is stored in `.tools/version.txt` (currently `0.0.3-stable`). The GitHub Actions workflow at `.github/workflows/auto-release.yml` can create a GitHub Release from that version and attach a clean source ZIP containing tracked project files.
 
-The workflow runs automatically when `.tools/version.txt` changes on `main`, and it can also be started manually from the **Actions** tab. Versions ending in `-stable` are published as stable releases; other suffixes are marked as prereleases.
+The workflow runs automatically on pushes to `main` only when the commit message starts with `v`; the `v` is only the trigger marker and is not included in the release tag or name. The workflow can also be started manually from the **Actions** tab. Versions ending in `-stable` are published as stable releases; other suffixes are marked as prereleases.
 
 ## License
 

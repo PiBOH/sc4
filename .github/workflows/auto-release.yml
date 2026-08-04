@@ -3,8 +3,6 @@ name: Auto Release
 on:
   push:
     branches: [main]
-    paths:
-      - '.tools/version.txt'
   workflow_dispatch:
     inputs:
       draft:
@@ -24,6 +22,9 @@ jobs:
   validate-and-release:
     name: Validate and publish release
     runs-on: ubuntu-latest
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      startsWith(github.event.head_commit.message, 'v')
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -40,7 +41,7 @@ jobs:
             echo "Invalid version in .tools/version.txt: $VERSION" >&2
             exit 1
           fi
-          TAG="v${VERSION}"
+          TAG="${VERSION}"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
           if [[ "$VERSION" == *-stable ]]; then
