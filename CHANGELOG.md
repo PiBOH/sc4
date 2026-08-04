@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documented the existing `Support/` EULA and support reference materials, which remain subject to the game's original licensing terms.
 - Documented the Semantic Versioning 2.0.0 convention while preserving the existing `.tools/version.txt` format (`0.0.3-stable`).
 - Added per-language locale ZIPs as release assets (`Danish.zip`, `Italian.zip`, …), each with a SHA-256 checksum, so users can download a single language without cloning the repository.
+- Added direct download links for every language ZIP on the website languages page, including English and UK English reference archives.
 
 ### Changed
 
