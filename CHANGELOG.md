@@ -15,9 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Updated the localized `SimCityLocale.DAT` archives for Danish, Dutch, Finnish, French, German, Italian, Norwegian, Polish, Portuguese, Spanish, and Swedish.
-- Updated 70 DBPF resources containing exact-match common UI labels that were still identical to the English reference, while preserving proper names, filenames, URLs, technical tokens, HTML, and dynamic placeholders.
-- Rebuilt the affected DBPF indexes and RefPack payloads without changing untouched resources.
+- Updated 88 DBPF resources containing exact-match UI labels that were still identical to the English reference; proper names, filenames, URLs, technical tokens, HTML, and dynamic placeholders were preserved.
+- Rebuilt the affected DBPF indexes and RefPack payloads without changing untouched resources; this remains a conservative pass and does not claim to translate every ambiguous English-looking proper name or technical term.
 - Created and retained a `.BAK` copy beside each modified locale archive before applying changes.
+- Performed a conservative wording audit of all entries changed by this project in every non-English archive, including Italian. The context-sensitive “Floating Population” wording was retained rather than replaced by an unverified semantic approximation; this is not a substitute for a complete native-speaker review of every historical archive entry.
+- Added a complete project README and a GitHub Actions auto-release workflow driven by `.tools/version.txt`.
 
 ## [0.0.2] - 2026-08-03
 

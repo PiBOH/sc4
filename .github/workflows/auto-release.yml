@@ -1,0 +1,128 @@
+name: Auto Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.tools/version.txt'
+  workflow_dispatch:
+    inputs:
+      draft:
+        description: 'Create the release as a draft'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auto-release
+  cancel-in-progress: false
+
+jobs:
+  validate-and-release:
+    name: Validate and publish release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Read release version
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="$(tr -d '\r\n' < .tools/version.txt | xargs)"
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
+            echo "Invalid version in .tools/version.txt: $VERSION" >&2
+            exit 1
+          fi
+          TAG="v${VERSION}"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          if [[ "$VERSION" == *-stable ]]; then
+            echo "prerelease=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Validate locale archives
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m py_compile .tools/translation-tools/locale_tools.py
+          python3 - <<'PY'
+          import runpy
+          from pathlib import Path
+          m = runpy.run_path('.tools/translation-tools/locale_tools.py')
+          files = [
+              'English/SimCityLocale.dat',
+              'Danish/SimCityLocale.DAT', 'Dutch/SimCityLocale.DAT',
+              'Finnish/SimCityLocale.DAT', 'French/SimCityLocale.DAT',
+              'German/SimCityLocale.DAT', 'Italian/SimCityLocale.dat',
+              'Norwgian/SimCityLocale.DAT', 'Polish/SimCityLocale.DAT',
+              'Portgese/SimCityLocale.DAT', 'Spanish/SimCityLocale.DAT',
+              'Swedish/SimCityLocale.DAT', 'UKEnglsh/SimCityLocale.DAT',
+          ]
+          for name in files:
+              db = m['DBPF'].load(name)
+              assert db.index_offset + db.index_size == len(db.data), name
+              ordered = sorted(db.entries, key=lambda e: e.offset)
+              cursor = 96
+              for entry in ordered:
+                  assert entry.offset == cursor, (name, entry.key)
+                  assert entry.offset + entry.size <= db.index_offset, (name, entry.key)
+                  cursor = entry.offset + entry.size
+              assert cursor == db.index_offset, name
+              for entry in db.ltexts():
+                  m['decode_resource'](entry.raw)
+              print(f'validated {name}: {db.count} resources')
+          PY
+
+      - name: Build clean release archive
+        id: package
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION='${{ steps.version.outputs.version }}'
+          PACKAGE="sc4-${VERSION}"
+          mkdir "$PACKAGE"
+          git archive --format=tar --prefix="$PACKAGE/" HEAD | tar -xf -
+          rm -rf "$PACKAGE/.git" "$PACKAGE/.bkp" "$PACKAGE/.ignore"
+          find "$PACKAGE" -type f \( -name '*.BAK' -o -name '*.tmp' -o -name '*.pyc' \) -delete
+          zip -qr "${PACKAGE}.zip" "$PACKAGE"
+          sha256sum "${PACKAGE}.zip" > "${PACKAGE}.zip.sha256"
+          echo "package=${PACKAGE}.zip" >> "$GITHUB_OUTPUT"
+          echo "checksum=${PACKAGE}.zip.sha256" >> "$GITHUB_OUTPUT"
+
+      - name: Extract changelog notes
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION='${{ steps.version.outputs.version }}'
+          awk -v version="$VERSION" '
+            BEGIN { found=0 }
+            $0 == "## [" version "]" { found=1; print; next }
+            found && $0 ~ /^## \[/ { exit }
+            found { print }
+          ' CHANGELOG.md > release-notes.md || true
+          if [[ ! -s release-notes.md ]]; then
+            printf 'Automated release %s. See CHANGELOG.md for details.\n' "$VERSION" > release-notes.md
+          fi
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: ${{ steps.version.outputs.tag }}
+          body_path: release-notes.md
+          draft: ${{ inputs.draft || false }}
+          prerelease: ${{ steps.version.outputs.prerelease }}
+          files: |
+            ${{ steps.package.outputs.package }}
+            ${{ steps.package.outputs.checksum }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

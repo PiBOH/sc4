@@ -149,6 +149,16 @@ def repack(db:DBPF,replacements:dict[tuple[int,int,int],str],out:Path)->int:
     # resources; silently dropping those bytes would be unsafe.
     if db.index_offset + db.index_size != len(db.data):
         raise ValueError("DBPF contains unindexed/trailing data; refusing to repack")
+    # Also require the indexed resources to cover the data area exactly.
+    # This prevents silently dropping gaps or overlapping/unindexed bytes
+    # when rebuilding the archive.
+    cursor = HEADER_SIZE
+    for entry in sorted(db.entries, key=lambda item: item.offset):
+        if entry.offset != cursor or entry.offset + entry.size > db.index_offset:
+            raise ValueError("DBPF payload area contains a gap or overlap; refusing to repack")
+        cursor = entry.offset + entry.size
+    if cursor != db.index_offset:
+        raise ValueError("DBPF payload area does not reach the index; refusing to repack")
     payloads=[]; changed=0
     for entry in db.entries:
         raw=entry.raw
@@ -196,6 +206,48 @@ _EXTRA = {
 "sv":{"Ambulance":"Ambulans","Bus":"Buss","Credits":"Medverkande","Downloads":"Nedladdningar","Enter":"Ange","Error":"Fel","Export":"Exportera","Garage":"Garage","Green":"Grön","Import":"Importera","Jobs":"Arbeten","Land":"Mark","Landfill":"Soptipp","Medium":"Medel","Name":"Namn","Restaurant":"Restaurang","Software":"Programvara","Special":"Special","Speedometer":"Hastighetsmätare","Stop":"Stopp","Subtotal":"Delsumma","Tank":"Tank","Tanker":"Tankbil","Taxi":"Taxi","Terminal":"Terminal","Terrain":"Terräng","Test":"Test","Total":"Totalt","Trailer":"Släpvagn","Truck":"Lastbil","Volume":"Volym","Floating Population":"Flytande befolkning"},
 }
 for _language, _terms in _EXTRA.items(): TRANSLATIONS[_language].update(_terms)
+
+# Conservative second-pass labels identified by comparing the English TGI
+# entry with the target entry.  The same-TGI guard in ``main`` means these
+# are applied only where the target still contains the English label.
+_CONSERVATIVE_EXTRA = {
+    "da": {
+        "Credits": "Krediteringer", "Game Over": "Spillet er slut",
+        "Tachometer": "Omdrejningstæller",
+    },
+    "nl": {
+        "Game Over": "Spel afgelopen",
+    },
+    "fi": {
+        "Game Over": "Peli ohi",
+    },
+    "fr": {
+        "Education": "Éducation",
+    },
+    "de": {
+        "Game Over": "Spiel vorbei", "Monorail": "Einschienenbahn",
+        "Tachometer": "Drehzahlmesser",
+    },
+    "it": {
+        "Game Over": "Partita terminata", "Monorail": "Monorotaia",
+    },
+    "no": {
+        "Game Over": "Spillet er over",
+    },
+    "pl": {
+        "Game Over": "Koniec gry",
+    },
+    "pt": {
+        "Game Over": "Fim de jogo", "Playground": "Parque infantil",
+    },
+    "es": {
+        "Game Over": "Fin de la partida",
+    },
+    "sv": {
+        "Game Over": "Spelet är slut",
+    },
+}
+for _language, _terms in _CONSERVATIVE_EXTRA.items(): TRANSLATIONS[_language].update(_terms)
 
 
 def compare(english,target):
