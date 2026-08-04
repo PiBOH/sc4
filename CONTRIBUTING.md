@@ -1,6 +1,14 @@
-# Developer Guide
+# Contributing
 
-This file is the repository's contributor guide. Read it before changing locale archives, translation tooling, documentation, workflows, or the GitHub Pages website.
+Thanks for your interest in contributing. Read this guide before changing locale archives, translation tooling, documentation, workflows, or the GitHub Pages website.
+
+## How to contribute
+
+1. Fork the repository and work from a feature branch.
+2. Read the sections below for domain-specific rules.
+3. Validate DBPF archives and run the pre-commit checklist before opening a pull request.
+4. Update `CHANGELOG.md` using [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+5. Open a pull request against `main` with a clear description of what was changed and why.
 
 ## Project scope
 
@@ -101,4 +109,4 @@ Also verify that:
 - `.BAK`, `.bkp/`, and `.ignore/` are not staged;
 - the Pages workflow copies only `.website` files;
 - site links and pages work after the directory move;
-- `README.md`, `DEVGUIDE.md`, and `CHANGELOG.md` are updated when behavior changes.
+- `README.md`, `CONTRIBUTING.md`, and `CHANGELOG.md` are updated when behavior changes.

@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added `DEVGUIDE.md`, an English contributor guide covering archive safety, website maintenance, workflows, documentation, and licensing boundaries.
+- Added `CONTRIBUTING.md`, an English contributor guide covering archive safety, website maintenance, workflows, documentation, and licensing boundaries.
 - Added the English static website under `.website/` with language, installation, tools, releases, licensing, and 404 pages.
 - Added a Pages deployment workflow that publishes only the selected `.website/` files.
 - Added DBPF/RefPack inspection and repacking utilities in `.tools/translation-tools/locale_tools.py`.

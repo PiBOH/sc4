@@ -102,4 +102,4 @@ Push commits to `main` whose message starts with `v` to trigger the automatic re
 
 ## Contributing
 
-Read [`DEVGUIDE.md`](DEVGUIDE.md) before changing archives, tooling, workflows, or the website. Keep changes focused, preserve backups, validate DBPF structure, and update `CHANGELOG.md` using the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format.
+Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before changing archives, tooling, workflows, or the website. Keep changes focused, preserve backups, validate DBPF structure, and update `CHANGELOG.md` using the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format.
