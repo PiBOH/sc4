@@ -1,8 +1,8 @@
 # SimCity 4 multilingual locale archives
 
-Updated `SimCityLocale.dat` archives for **SimCity 4 Deluxe v1.1.610**, with translations for the supported game languages.
+Updated `SimCityLocale.dat` archives for **SimCity 4 Deluxe v1.1.610**, with community-maintained translations for the supported game languages.
 
-> This repository contains localization data, not the game itself. SimCity 4 and its original localization files remain the property of their respective rights holders.
+> This repository contains localization data and maintenance tooling. It does not contain the SimCity 4 game executable or a license to redistribute the game.
 
 ## Supported languages
 
@@ -22,75 +22,84 @@ Updated `SimCityLocale.dat` archives for **SimCity 4 Deluxe v1.1.610**, with tra
 | `English/` | English reference | `SimCityLocale.dat` |
 | `UKEnglsh/` | English (UK reference) | `SimCityLocale.DAT` |
 
-The folder names reflect the original SimCity 4 installation/package names and are intentionally retained.
+The historical folder spellings are retained for compatibility with the original game packages.
 
 ## Installation
 
 1. Close SimCity 4.
-2. Make a backup of the original locale archive in your game installation.
-3. Choose the language folder you want.
-4. Copy its `SimCityLocale.dat` or `SimCityLocale.DAT` into the corresponding language folder in your SimCity 4 installation, replacing the original file.
-5. Start the game and select/use that language as appropriate for your installation.
+2. Back up the original locale archive in your game installation.
+3. Choose a language folder from this repository.
+4. Copy its `SimCityLocale.dat` or `SimCityLocale.DAT` into the corresponding language folder in your SimCity 4 installation.
+5. Start the game and select or use the language configuration appropriate for your installation.
 
-Keep the archive extension and filename spelling exactly as supplied. Windows filesystems are usually case-insensitive, but the original game package names are preserved for compatibility.
+Keep the original filename and extension spelling. See the [English installation guide](.website/install.html) for more detail.
 
-## What is included
+## Website
 
-- Updated DBPF locale archives.
-- `.tools/translation-tools/locale_tools.py`, a small dependency-free Python utility for inspecting, comparing, extracting, validating, and safely repacking the archives.
-- Per-language file lists, readmes, EULAs, and fonts from the original localization package.
-- `CHANGELOG.md` with the project history.
+The English static website is stored in [`.website/`](.website/) and includes:
+
+- project overview;
+- supported languages and downloads;
+- installation instructions;
+- DBPF/RefPack tooling notes;
+- release history;
+- licensing and attribution information;
+- a custom 404 page.
+
+The workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) publishes only the selected files from `.website/`. Locale archives, `.BAK` backups, `.bkp/`, `.ignore/`, and internal tooling are not included in the Pages artifact.
+
+To enable deployment, set **Settings → Pages → Source: GitHub Actions** in the GitHub repository.
 
 ## Translation and archive safety
 
-The locale archives use Maxis DBPF resources and RefPack-compressed LTEXT data. The translation utility:
+The locale archives use Maxis DBPF resources and RefPack-compressed LTEXT data. The dependency-free Python utility at `.tools/translation-tools/locale_tools.py`:
 
-- compares entries by their Type/Group/Instance (TGI) identifiers;
-- changes exact matching text only, rather than performing broad binary replacements;
+- compares entries by Type/Group/Instance (TGI) identifiers;
+- changes exact verified matches instead of performing broad binary replacements;
 - preserves HTML, escape sequences, dynamic placeholders, names, URLs, filenames, and technical identifiers;
-- updates the LTEXT length field and DBPF offsets when a string changes;
-- rejects archives with trailing, gapped, or overlapping payload data before repacking;
-- validates the resulting archive by reopening it and decoding its LTEXT resources.
+- updates LTEXT length fields and DBPF offsets together;
+- rejects trailing, gapped, or overlapping payload data before repacking;
+- reopens and decodes output resources during validation.
 
-The English archive at `English/SimCityLocale.dat` is the comparison reference. The English reference files are not modified by the localization process.
+The English archive at `English/SimCityLocale.dat` is the comparison reference and is not modified by the localization process.
 
 ## Local validation
 
 Python 3.10 or newer is recommended. No third-party Python packages are required.
 
-Inspect archives:
-
 ```bash
 python3 .tools/translation-tools/locale_tools.py inspect \
   English/SimCityLocale.dat Italian/SimCityLocale.dat
-```
 
-Compare a language with the English reference:
-
-```bash
 python3 .tools/translation-tools/locale_tools.py compare \
   English/SimCityLocale.dat Italian/SimCityLocale.dat
 ```
 
-The tool also supports extraction and conservative translation candidates. The project audit checked all entries changed by this project; it does not claim to replace a complete native-speaker review of every historical sentence in the original archives. Any archive rewrite should be performed on a copy first and validated before replacement.
+The audit performed for this project was conservative and focused on entries changed by the project. It does not replace a complete native-speaker review of every historical sentence in every original archive.
 
 ## Backups and ignored files
 
-Working backups are kept beside modified archives with the `.BAK` suffix. The following are intentionally ignored by Git:
+Working backups are kept beside modified archives with the `.BAK` suffix. Git ignores:
 
-- `.BAK` files;
+- `*.BAK` files;
 - the root `.bkp/` directory;
 - the root `.ignore/` directory;
 - Python cache directories.
 
-Do not delete these backups unless you have independently verified the corresponding archive.
+Do not delete these backups until the corresponding archive has been independently verified.
+
+## Licensing and attribution
+
+The repository's own source, documentation, website, and tooling are released under the **Unlicense**, as stated in [`LICENSE`](LICENSE).
+
+That does **not** change the licensing or ownership of SimCity 4. SimCity 4, SimCity 4 Deluxe, Maxis/EA, the game's original localization data, and related trademarks/assets remain subject to their respective rights and terms. The repository includes original support and license reference materials under [`Support/`](Support/), including language-specific EULA files and the original support readme. A local `Maxis/Support/` mirror may exist in a working copy, but it is not part of this commit. These documents are provided for reference and do not grant additional rights to redistribute the game.
 
 ## Releases
 
-The release version is stored in `.tools/version.txt` (currently `0.0.3-stable`). The GitHub Actions workflow at `.github/workflows/auto-release.yml` can create a GitHub Release from that version and attach a clean source ZIP containing tracked project files.
+The version is stored in `.tools/version.txt` (currently `0.0.3-stable`). The workflow [`.github/workflows/auto-release.yml`](.github/workflows/auto-release.yml) validates the archives, creates a clean source ZIP, generates a SHA-256 checksum, and publishes the GitHub Release.
 
-The workflow runs automatically on pushes to `main` only when the commit message starts with `v`; the `v` is only the trigger marker and is not included in the release tag or name. The workflow can also be started manually from the **Actions** tab. Versions ending in `-stable` are published as stable releases; other suffixes are marked as prereleases.
+Push commits to `main` whose message starts with `v` to trigger the automatic release job. The `v` is only a trigger marker; it is not included in the release tag or release name. Manual workflow dispatch is also supported.
 
-## License
+## Contributing
 
-The repository's original project content is released under the terms in [`LICENSE`](LICENSE). SimCity 4 remains a trademark and copyrighted product of its respective owners.
+Read [`DEVGUIDE.md`](DEVGUIDE.md) before changing archives, tooling, workflows, or the website. Keep changes focused, preserve backups, validate DBPF structure, and update `CHANGELOG.md` using the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format.

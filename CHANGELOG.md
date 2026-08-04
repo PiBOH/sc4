@@ -9,8 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added `DEVGUIDE.md`, an English contributor guide covering archive safety, website maintenance, workflows, documentation, and licensing boundaries.
+- Added the English static website under `.website/` with language, installation, tools, releases, licensing, and 404 pages.
+- Added a Pages deployment workflow that publishes only the selected `.website/` files.
 - Added DBPF/RefPack inspection and repacking utilities in `.tools/translation-tools/locale_tools.py`.
 - Added root ignore rules for `.ignore/`, `.bkp/`, and locale backup files with the `.BAK` extension.
+- Documented the existing `Support/` EULA and support reference materials, which remain subject to the game's original licensing terms.
 
 ### Changed
 
@@ -20,6 +24,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Created and retained a `.BAK` copy beside each modified locale archive before applying changes.
 - Performed a conservative wording audit of all entries changed by this project in every non-English archive, including Italian. The context-sensitive “Floating Population” wording was retained rather than replaced by an unverified semantic approximation; this is not a substitute for a complete native-speaker review of every historical archive entry.
 - Added a complete project README and a GitHub Actions auto-release workflow driven by `.tools/version.txt`.
+- Moved the static GitHub Pages site from the repository root into `.website/`.
+- Updated `.github/workflows/deploy-pages.yml` to publish only the selected `.website/` files, excluding locale archives, backups, and private tool directories.
+- Recreated and expanded `README.md` with the website, contributor guide, and the distinction between the repository Unlicense and SimCity 4/Maxis/EA licensing.
+
+### Removed
+
+- Removed obsolete root language file lists that are not required by the project workflow.
 
 ## [0.0.2] - 2026-08-03
 
