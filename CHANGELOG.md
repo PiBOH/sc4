@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added root ignore rules for `.ignore/`, `.bkp/`, and locale backup files with the `.BAK` extension.
 - Documented the existing `Support/` EULA and support reference materials, which remain subject to the game's original licensing terms.
 - Documented the Semantic Versioning 2.0.0 convention while preserving the existing `.tools/version.txt` format (`0.0.3-stable`).
+- Added per-language locale ZIPs as release assets (`Danish.zip`, `Italian.zip`, …), each with a SHA-256 checksum, so users can download a single language without cloning the repository.
 
 ### Changed
 
@@ -25,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Created and retained a `.BAK` copy beside each modified locale archive before applying changes.
 - Performed a conservative wording audit of all entries changed by this project in every non-English archive, including Italian. The context-sensitive “Floating Population” wording was retained rather than replaced by an unverified semantic approximation; this is not a substitute for a complete native-speaker review of every historical archive entry.
 - Added a complete project README and a GitHub Actions auto-release workflow driven by `.tools/version.txt`.
-- Moved the static GitHub Pages site from the repository root into `.website/`.
+- Moved the static GitHub Pages site from the repository root into `.website/` and simplified its styling to a plain, no-framework design.
 - Updated `.github/workflows/deploy-pages.yml` to publish only the selected `.website/` files, excluding locale archives, backups, and private tool directories.
 - Recreated and expanded `README.md` with the website, contributor guide, and the distinction between the repository Unlicense and SimCity 4/Maxis/EA licensing.
 

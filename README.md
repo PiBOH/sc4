@@ -28,11 +28,11 @@ The historical folder spellings are retained for compatibility with the original
 
 1. Close SimCity 4.
 2. Back up the original locale archive in your game installation.
-3. Choose a language folder from this repository.
+3. Choose a language folder from this repository, or download a per-language ZIP from the [latest release](https://github.com/PiBOH/sc4/releases/latest).
 4. Copy its `SimCityLocale.dat` or `SimCityLocale.DAT` into the corresponding language folder in your SimCity 4 installation.
 5. Start the game and select or use the language configuration appropriate for your installation.
 
-Keep the original filename and extension spelling. See the [English installation guide](.website/install.html) for more detail.
+Each release includes a standalone ZIP for every language (e.g. `Italian.zip`, `French.zip`) alongside the full source package. Keep the original filename and extension spelling. See the [English installation guide](.website/install.html) for more detail.
 
 ## Website
 
@@ -96,7 +96,7 @@ That does **not** change the licensing or ownership of SimCity 4. SimCity 4, Sim
 
 ## Releases
 
-The version is stored in `.tools/version.txt` (currently `0.0.3-stable`) using Semantic Versioning 2.0.0. The project keeps its existing `MAJOR.MINOR.PATCH-suffix` formatting: `-stable` is treated as a stable release, while suffixes such as `-alpha`, `-beta`, or `-rc.1` are treated as prereleases. The workflow [`.github/workflows/auto-release.yml`](.github/workflows/auto-release.yml) validates the version and archives, creates a clean source ZIP, generates a SHA-256 checksum, and publishes the GitHub Release.
+The version is stored in `.tools/version.txt` (currently `0.0.3-stable`) using Semantic Versioning 2.0.0. The project keeps its existing `MAJOR.MINOR.PATCH-suffix` formatting: `-stable` is treated as a stable release, while suffixes such as `-alpha`, `-beta`, or `-rc.1` are treated as prereleases. The workflow [`.github/workflows/auto-release.yml`](.github/workflows/auto-release.yml) validates the version and archives, creates a clean source ZIP, generates per-language locale ZIPs (e.g. `Italian.zip`, `German.zip`), produces SHA-256 checksums, and publishes everything as GitHub Release assets.
 
 Push commits to `main` whose message starts with `v` to trigger the automatic release job. The `v` is only a trigger marker; it is not included in the release tag or release name. Manual workflow dispatch is also supported.
 

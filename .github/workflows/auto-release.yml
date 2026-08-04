@@ -101,6 +101,19 @@ jobs:
           echo "package=${PACKAGE}.zip" >> "$GITHUB_OUTPUT"
           echo "checksum=${PACKAGE}.zip.sha256" >> "$GITHUB_OUTPUT"
 
+      - name: Build per-language locale ZIPs
+        id: languages
+        shell: bash
+        run: |
+          set -euo pipefail
+          LANGUAGES=(Danish Dutch Finnish French German Italian Norwgian Polish Portgese Spanish Swedish)
+          for LANGUAGE in "${LANGUAGES[@]}"; do
+            ZIPFILE="${LANGUAGE}.zip"
+            zip -qr "$ZIPFILE" "$LANGUAGE"
+            sha256sum "$ZIPFILE" > "${ZIPFILE}.sha256"
+            echo "Zipped ${LANGUAGE} → ${ZIPFILE}"
+          done
+
       - name: Extract changelog notes
         shell: bash
         run: |
@@ -127,5 +140,27 @@ jobs:
           files: |
             ${{ steps.package.outputs.package }}
             ${{ steps.package.outputs.checksum }}
+            Danish.zip
+            Danish.zip.sha256
+            Dutch.zip
+            Dutch.zip.sha256
+            Finnish.zip
+            Finnish.zip.sha256
+            French.zip
+            French.zip.sha256
+            German.zip
+            German.zip.sha256
+            Italian.zip
+            Italian.zip.sha256
+            Norwgian.zip
+            Norwgian.zip.sha256
+            Polish.zip
+            Polish.zip.sha256
+            Portgese.zip
+            Portgese.zip.sha256
+            Spanish.zip
+            Spanish.zip.sha256
+            Swedish.zip
+            Swedish.zip.sha256
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
