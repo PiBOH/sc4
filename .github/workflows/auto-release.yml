@@ -106,7 +106,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          LANGUAGES=(Danish Dutch Finnish French German Italian Norwgian Polish Portgese Spanish Swedish)
+          LANGUAGES=(Danish Dutch Finnish French German Italian Norwgian Polish Portgese Spanish Swedish English UKEnglsh)
           for LANGUAGE in "${LANGUAGES[@]}"; do
             ZIPFILE="${LANGUAGE}.zip"
             zip -qr "$ZIPFILE" "$LANGUAGE"
@@ -162,5 +162,9 @@ jobs:
             Spanish.zip.sha256
             Swedish.zip
             Swedish.zip.sha256
+            English.zip
+            English.zip.sha256
+            UKEnglsh.zip
+            UKEnglsh.zip.sha256
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
