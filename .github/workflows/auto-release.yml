@@ -114,6 +114,21 @@ jobs:
             echo "Zipped ${LANGUAGE} → ${ZIPFILE}"
           done
 
+      - name: Build all-languages ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir All-languages
+          for d in Danish Dutch English Finnish French German Italian Norwgian Polish Portgese Spanish Swedish UKEnglsh; do
+            cp -r "$d" "All-languages/$d"
+          done
+          find All-languages -type f ! -iname 'SimCityLocale.dat' ! -iname 'SimCityLocale.DAT' -delete
+          find All-languages -type d -empty -delete 2>/dev/null || true
+          zip -qr All-languages.zip All-languages
+          sha256sum All-languages.zip > All-languages.zip.sha256
+          rm -rf All-languages
+          echo 'Zipped All-languages.zip'
+
       - name: Extract changelog notes
         shell: bash
         run: |
@@ -198,5 +213,7 @@ jobs:
             English.zip.sha256
             UKEnglsh.zip
             UKEnglsh.zip.sha256
+            All-languages.zip
+            All-languages.zip.sha256
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
