@@ -96,7 +96,7 @@ That does **not** change the licensing or ownership of SimCity 4. SimCity 4, Sim
 
 ## Releases
 
-The version is stored in `.tools/version.txt` (currently `0.0.3-stable`). The workflow [`.github/workflows/auto-release.yml`](.github/workflows/auto-release.yml) validates the archives, creates a clean source ZIP, generates a SHA-256 checksum, and publishes the GitHub Release.
+The version is stored in `.tools/version.txt` (currently `0.0.3-stable`) using Semantic Versioning 2.0.0. The project keeps its existing `MAJOR.MINOR.PATCH-suffix` formatting: `-stable` is treated as a stable release, while suffixes such as `-alpha`, `-beta`, or `-rc.1` are treated as prereleases. The workflow [`.github/workflows/auto-release.yml`](.github/workflows/auto-release.yml) validates the version and archives, creates a clean source ZIP, generates a SHA-256 checksum, and publishes the GitHub Release.
 
 Push commits to `main` whose message starts with `v` to trigger the automatic release job. The `v` is only a trigger marker; it is not included in the release tag or release name. Manual workflow dispatch is also supported.
 

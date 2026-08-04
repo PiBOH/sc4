@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added DBPF/RefPack inspection and repacking utilities in `.tools/translation-tools/locale_tools.py`.
 - Added root ignore rules for `.ignore/`, `.bkp/`, and locale backup files with the `.BAK` extension.
 - Documented the existing `Support/` EULA and support reference materials, which remain subject to the game's original licensing terms.
+- Documented the Semantic Versioning 2.0.0 convention while preserving the existing `.tools/version.txt` format (`0.0.3-stable`).
 
 ### Changed
 

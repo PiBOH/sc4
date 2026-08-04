@@ -37,8 +37,10 @@ jobs:
         run: |
           set -euo pipefail
           VERSION="$(tr -d '\r\n' < .tools/version.txt | xargs)"
-          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
-            echo "Invalid version in .tools/version.txt: $VERSION" >&2
+          # SemVer 2.0.0 with the repository's existing suffix convention.
+          # Examples: 0.0.3-stable, 1.2.0-beta, 2.0.0-rc.1.
+          if [[ ! "$VERSION" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-((0|[1-9][0-9]*)|([0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*))(\.((0|[1-9][0-9]*)|([0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*)))*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$ ]]; then
+            echo "Invalid Semantic Version in .tools/version.txt: $VERSION" >&2
             exit 1
           fi
           TAG="${VERSION}"

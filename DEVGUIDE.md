@@ -68,7 +68,7 @@ The Pages workflow explicitly copies the website files into `_site`; it does not
 
 ## Workflows and releases
 
-`auto-release.yml` reads `.tools/version.txt`. A push commit message beginning with `v` triggers the release job; the `v` is not added to the release tag or name. Manual dispatch is also supported.
+`auto-release.yml` reads `.tools/version.txt` as Semantic Versioning 2.0.0. Keep the repository's existing formatting, such as `0.0.3-stable`; `-stable` produces a stable release, while `-alpha`, `-beta`, and `-rc.1` produce prereleases. A push commit message beginning with `v` triggers the release job; the `v` is not added to the release tag or name. Manual dispatch is also supported.
 
 `deploy-pages.yml` uses the official Pages actions and publishes the `.website/` artifact. Required Pages permissions are `contents: read`, `pages: write`, and `id-token: write`.
 
