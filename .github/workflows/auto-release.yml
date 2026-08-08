@@ -129,6 +129,14 @@ jobs:
           rm -rf All-languages
           echo 'Zipped All-languages.zip'
 
+      - name: Build Plugins ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          zip -qr Plugins.zip Plugins
+          sha256sum Plugins.zip > Plugins.zip.sha256
+          echo 'Zipped Plugins.zip'
+
       - name: Extract changelog notes
         shell: bash
         run: |
@@ -215,5 +223,7 @@ jobs:
             UKEnglsh.zip.sha256
             All-languages.zip
             All-languages.zip.sha256
+            Plugins.zip
+            Plugins.zip.sha256
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

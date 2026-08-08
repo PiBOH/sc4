@@ -22,6 +22,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Redesigned the website to match the NirSoft aesthetic: Arial font, white background, minimal header with pipe-separated text links, no decorative boxes, standard browser link colors, plain tables.
 - Added restrained old-web colors to the existing site structure: pale blue sidebar/header/footer backgrounds, dark blue headings, and a light blue table header without changing the layout.
 - Documented archive compatibility up to SimCity 4 v1.1.641 across README, developer guide, website, and Jekyll config.
+- Added a `Plugins/` folder with plugins tested and working with SimCity 4 Deluxe Edition: SC4 Disable FPS Limits v0.2.3 and the SimCity 4 Extra Cheats Plugin.
+- Added a Plugins page to the website with plugin descriptions, installation instructions, licensing notes, and a direct download link.
+- Added `Plugins.zip` with its SHA-256 checksum as a release asset alongside the per-language ZIPs.
 
 ### Changed
 
