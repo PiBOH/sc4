@@ -25,6 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added a `Plugins/` folder with plugins tested and working with SimCity 4 Deluxe Edition: SC4 Disable FPS Limits v0.2.3 and the SimCity 4 Extra Cheats Plugin.
 - Added a Plugins page to the website with plugin descriptions, installation instructions (including the explicit `%USERPROFILE%\Documents\SimCity 4\Plugins` destination), licensing notes, and a direct download link, noting that the Extra Cheats Plugin is optional but highly recommended on SimCity 4 versions prior to v1.1.641.
 - Added `Plugins.zip` with its SHA-256 checksum as a release asset alongside the per-language ZIPs.
+- Redesigned the website with the Jarock catalogue style: centered column with subtle shadow, serif headings, header brand block, top navigation bar, boxed sidebar with notes, breadcrumbs, catalog tables with captions, status chips, download boxes, and notice boxes.
+- Added a small `script.js` for the responsive mobile menu toggle.
 
 ### Changed
 
@@ -35,7 +37,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Performed a conservative wording audit of all entries changed by this project in every non-English archive, including Italian. The context-sensitive “Floating Population” wording was retained rather than replaced by an unverified semantic approximation; this is not a substitute for a complete native-speaker review of every historical archive entry.
 - Added a complete project README and a GitHub Actions auto-release workflow driven by `.tools/version.txt`.
 - Moved the static GitHub Pages site from the repository root into `.website/` and simplified its styling to a plain, no-framework design.
-- Updated `.github/workflows/deploy-pages.yml` to publish only the selected `.website/` files, excluding locale archives, backups, and private tool directories.
+- Updated `.github/workflows/deploy-pages.yml` to publish only the selected `.website/` files (now including `script.js`), excluding locale archives, backups, and private tool directories.
+- Replaced the NirSoft-inspired flat layout with the Jarock catalogue design across every site page.
 - Recreated and expanded `README.md` with the website, contributor guide, and the distinction between the repository Unlicense and SimCity 4/Maxis/EA licensing.
 
 ### Removed

@@ -1,53 +1,22 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="DBPF and RefPack translation tools for SimCity 4 locale archives."><title>Tools — SimCity 4 Locales</title><link rel="stylesheet" href="styles.css"></head>
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="DBPF and RefPack translation tools for SimCity 4 locale archives."><title>Tools - SimCity 4 Locales</title><link rel="stylesheet" href="styles.css"><script defer src="script.js"></script>
+</head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
-<header class="site-header"><a class="brand" href="index.html">SimCity 4 Locales</a></header>
-<div class="layout">
-<aside class="sidebar">
-  <p class="sidebar-title">Pages</p>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="languages.html">Languages</a></li>
-    <li><a href="plugins.html">Plugins</a></li>
-    <li><a href="install.html">Installation</a></li>
-    <li><a class="active" href="tools.html">Tools</a></li>
-    <li><a href="releases.html">Releases</a></li>
-    <li><a href="license.html">License</a></li>
-  </ul>
-  <p class="sidebar-title">Links</p>
-  <ul>
-    <li><a href="https://github.com/PiBOH/sc4">GitHub</a></li>
-    <li><a href="https://github.com/PiBOH/sc4/releases">Releases</a></li>
-    <li><a href="https://github.com/PiBOH/sc4/blob/main/README.md">README</a></li>
-  </ul>
-</aside>
-<main class="main-content" id="main-content">
-<h1>Translation tools</h1>
-<p>A small, dependency-free Python utility for inspecting, comparing, extracting, and safely repacking locale archives.</p>
-<h2><code>locale_tools.py</code></h2>
-<p>The tool lives in <code>.tools/translation-tools/locale_tools.py</code>. Python 3.10 or newer is recommended.</p>
-<h3>Inspect archives</h3>
-<pre><code>python3 .tools/translation-tools/locale_tools.py inspect \
-  English/SimCityLocale.dat Italian/SimCityLocale.dat</code></pre>
-<h3>Compare a language with English</h3>
-<pre><code>python3 .tools/translation-tools/locale_tools.py compare \
-  English/SimCityLocale.dat Italian/SimCityLocale.dat</code></pre>
-<h3>Extract readable text</h3>
-<pre><code>python3 .tools/translation-tools/locale_tools.py extract \
-  Italian/SimCityLocale.dat /tmp/italian.json</code></pre>
-<h2>Safety checks</h2>
-<ul>
-<li>Resources are identified by Type/Group/Instance (TGI) identifiers.</li>
-<li>Only exact, verified text matches are considered for conservative updates.</li>
-<li>HTML, escape sequences, placeholders, names, URLs, and technical tokens are preserved.</li>
-<li>LTEXT length fields, payload sizes, and DBPF offsets are rebuilt together.</li>
-<li>Trailing data, gaps, and overlapping payloads are rejected before repacking.</li>
-<li>The output is reopened and every LTEXT resource is decoded during validation.</li>
-</ul>
-<p><a href="https://github.com/PiBOH/sc4/blob/main/.tools/translation-tools/locale_tools.py">Open the tool</a> &middot; <a href="releases.html">View releases</a></p>
-</main>
-</div>
-<footer class="site-footer">SimCity 4 Locales — community-maintained language archives. &copy; under Unlicense. SimCity 4 &copy; Maxis/EA.</footer>
+<header class="site-header"><div class="container header-main"><a class="brand" href="index.html"><span class="brand-mark">SC4</span><span><span class="brand-name">SC4 Locales</span><span class="brand-subtitle">SimCity 4 community locale archives</span></span></a><div class="header-meta"><strong>Translation tools</strong>DBPF / RefPack utilities<br><a href="https://github.com/PiBOH/sc4">GitHub repository</a></div><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button></div><nav class="site-nav" aria-label="Main navigation"><ul class="container nav-list" id="primary-nav"><li><a href="index.html">Main Page</a></li><li><a href="languages.html">Languages</a></li><li><a href="plugins.html">Plugins</a></li><li><a href="install.html">Installation</a></li><li><a href="tools.html" aria-current="page">Tools</a></li><li><a href="releases.html">Releases</a></li><li><a href="license.html">License</a></li><li><a href="https://github.com/PiBOH/sc4/issues">Issues</a></li></ul></nav></header>
+<main id="main-content" class="page-layout"><aside class="sidebar"><h2 class="sidebar-heading">Browse SC4 Locales</h2><ul><li><a href="languages.html">Language archives</a></li><li><a href="plugins.html">Plugins</a></li><li><a href="install.html">Installation</a></li><li><a href="tools.html">Tools</a></li><li><a href="releases.html">Releases</a></li><li><a href="license.html">License</a></li></ul><h2 class="sidebar-heading">Project links</h2><ul><li><a href="https://github.com/PiBOH/sc4">Source on GitHub</a></li><li><a href="https://github.com/PiBOH/sc4/releases">Downloads</a></li><li><a href="https://github.com/PiBOH/sc4/blob/main/README.md">README</a></li></ul><div class="sidebar-note">Tested on SimCity 4 Deluxe v1.1.610; compatible up to v1.1.641.</div><div class="sidebar-note">Community project under Unlicense. SimCity 4 © Maxis/EA.</div></aside>
+<section class="content"><p class="breadcrumb"><a href="index.html">Main Page</a> &gt; Tools</p><h1>Translation tools</h1><p class="lead">A small, dependency-free Python utility for inspecting, comparing, extracting, and safely repacking locale archives.</p>
+<h2>locale_tools.py</h2><p>The tool lives in <code>.tools/translation-tools/locale_tools.py</code>. Python 3.10 or newer is recommended.</p>
+<h3>Inspect archives</h3><pre class="command">python3 .tools/translation-tools/locale_tools.py inspect \
+  English/SimCityLocale.dat Italian/SimCityLocale.dat</pre>
+<h3>Compare a language with English</h3><pre class="command">python3 .tools/translation-tools/locale_tools.py compare \
+  English/SimCityLocale.dat Italian/SimCityLocale.dat</pre>
+<h3>Extract readable text</h3><pre class="command">python3 .tools/translation-tools/locale_tools.py extract \
+  Italian/SimCityLocale.dat /tmp/italian.json</pre>
+<h2>Safety checks</h2><ul class="list-tight"><li>Resources are identified by Type/Group/Instance (TGI) identifiers.</li><li>Only exact, verified text matches are considered for conservative updates.</li><li>HTML, escape sequences, placeholders, names, URLs, and technical tokens are preserved.</li><li>LTEXT length fields, payload sizes, and DBPF offsets are rebuilt together.</li><li>Trailing data, gaps, and overlapping payloads are rejected before repacking.</li><li>The output is reopened and every LTEXT resource is decoded during validation.</li></ul>
+<div class="notice"><strong>Validation:</strong> every release runs a full DBPF integrity pass over all 13 locale archives before publishing.</div>
+<p class="small"><a href="https://github.com/PiBOH/sc4/blob/main/.tools/translation-tools/locale_tools.py">Open the tool on GitHub</a> &middot; <a href="releases.html">View releases</a></p></section></main>
+<footer class="site-footer"><div class="container footer-links"><a href="index.html">Main Page</a><a href="languages.html">Languages</a><a href="plugins.html">Plugins</a><a href="install.html">Installation</a><a href="tools.html">Tools</a><a href="releases.html">Releases</a><a href="license.html">License</a></div><div class="container footer-note">SimCity 4 Locales is released under the <a href="license.html">Unlicense</a>. SimCity 4 © Maxis/EA.</div></footer>
 </body></html>

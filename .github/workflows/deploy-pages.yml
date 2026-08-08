@@ -30,11 +30,11 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p _site
-          cp .website/index.html .website/languages.html .website/plugins.html .website/install.html .website/tools.html .website/releases.html .website/license.html .website/404.html .website/styles.css _site/
+          cp .website/index.html .website/languages.html .website/plugins.html .website/install.html .website/tools.html .website/releases.html .website/license.html .website/404.html .website/styles.css .website/script.js _site/
           test -f _site/index.html
           test -f _site/plugins.html
           test -f _site/styles.css
-          test ! -e _site/script.js
+          test -f _site/script.js
           test ! -e _site/.bkp
           test ! -e _site/.ignore
           ! find _site -type f \( -name '*.BAK' -o -name '*.DAT' -o -name '*.dat' \) -print -quit | grep -q .
